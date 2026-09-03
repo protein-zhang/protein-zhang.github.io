@@ -37,10 +37,10 @@ export default function Contact() {
         </div>
       </div>
       <style>{`
-        .contact-card{text-align:left;padding:30px 34px}
-        .c-tip{color:var(--muted);margin-bottom:18px;font-size:14px}
-        .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-        .c-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;
+        .contact-card{text-align:left;padding:clamp(20px,4vw,30px) clamp(18px,4vw,34px)}
+        .c-tip{color:var(--muted);margin-bottom:clamp(14px,2.5vw,18px);font-size:14px}
+        .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,2vw,14px)}
+        .c-item{display:flex;align-items:center;gap:12px;padding:clamp(10px,2vw,12px) 16px;border-radius:12px;
           background:var(--surface);border:1px solid var(--border)}
         .c-label{flex-shrink:0;font-size:13px;color:var(--muted);width:44px}
         .c-value{font-size:14.5px;color:var(--text);word-break:break-all}

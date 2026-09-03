@@ -27,7 +27,7 @@ export default function PostDetail({ post, index, onBack }: Props) {
       </div>
       <style>{`
         #post-detail{padding:8px 0 20px}
-        .post-detail-card{display:flex;flex-direction:column;gap:16px;padding:28px 30px;margin-bottom:16px}
+        .post-detail-card{display:flex;flex-direction:column;gap:clamp(12px,2.5vw,16px);padding:clamp(18px,4vw,30px);margin-bottom:16px}
         .back-btn{align-self:flex-start;cursor:pointer;background:none;border:1px solid var(--border);
           color:var(--muted);font-size:13.5px;padding:8px 16px;border-radius:10px;transition:.2s;font-family:inherit}
         .back-btn:hover{border-color:var(--accent);color:var(--text);transform:translateY(-1px)}
@@ -37,6 +37,10 @@ export default function PostDetail({ post, index, onBack }: Props) {
         .post-detail-card .post-body{display:block;color:var(--text);font-size:15px;line-height:1.9;
           border-top:1px dashed var(--border);padding-top:18px}
         .post-detail-card .post-body p{margin-bottom:14px}
+        @media(max-width:640px){
+          .post-detail-card .post-body{font-size:15.5px;line-height:1.85}
+          .back-btn{padding:10px 18px;font-size:14px}
+        }
       `}</style>
     </section>
   )

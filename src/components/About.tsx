@@ -20,9 +20,9 @@ export default function About() {
         </div>
       </div>
       <style>{`
-        .about-grid{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start}
+        .about-grid{display:grid;grid-template-columns:260px 1fr;gap:clamp(18px,3.5vw,28px);align-items:start}
         .avatar{aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,#1c2230,#0d0f14);
-          border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:84px;font-weight:700;overflow:hidden}
+          border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:clamp(48px,12vw,84px);font-weight:700;overflow:hidden}
         .avatar span{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
         .about p{color:var(--muted);margin-bottom:12px}
         .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}

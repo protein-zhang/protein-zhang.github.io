@@ -49,13 +49,20 @@ export default function Hero() {
         .sub{font-size:clamp(17px,2.4vw,21px);color:var(--muted);min-height:1.6em;font-weight:400}
         .cursor{display:inline-block;width:2px;background:var(--accent);animation:blink .9s steps(1) infinite;margin-left:2px}
         @keyframes blink{50%{opacity:0}}
-        .role-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+        .role-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(22px,4vw,34px)}
         .tag{padding:8px 15px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-size:13.5px;color:var(--muted);backdrop-filter:blur(8px)}
-        .cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+        .cta{display:flex;gap:14px;margin-top:clamp(24px,4.5vw,38px);flex-wrap:wrap}
         .btn{padding:12px 22px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);text-decoration:none;font-size:14.5px;transition:.25s;backdrop-filter:blur(8px)}
         .btn:hover{border-color:var(--accent);transform:translateY(-2px)}
         .btn.primary{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#0d0f14;font-weight:600;border:none}
         .btn.primary:hover{filter:brightness(1.07)}
+        @media(max-width:640px){
+          header.hero{min-height:82vh;padding-top:20px}
+          .chip{font-size:12.5px;padding:6px 13px}
+          .tag{font-size:12.5px;padding:7px 13px}
+          .cta{gap:12px}
+          .btn{flex:1 1 130px;justify-content:center;text-align:center}
+        }
       `}</style>
     </header>
   )

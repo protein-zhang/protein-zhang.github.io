@@ -25,13 +25,14 @@ export default function Posts({ onOpen }: Props) {
         ))}
       </div>
       <style>{`
-        .post{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;padding:22px 24px}
+        .post{display:flex;flex-direction:column;gap:8px;margin-bottom:clamp(12px,2.5vw,16px);padding:var(--card-pad)}
         .post-meta{font-size:12.5px;color:var(--muted);letter-spacing:.02em}
         .post h3{font-size:19px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
         .post h3:hover{color:var(--accent)}
         .post .hint{font-size:12px;color:var(--accent);margin-left:auto}
         .post .intro{color:var(--muted);font-size:14px}
         .empty{color:var(--muted);font-size:14px;padding:12px 0}
+        @media(max-width:640px){ .post h3{font-size:17px} }
       `}</style>
     </section>
   )
