@@ -1,10 +1,12 @@
-import { useState } from 'react'
 import { posts } from '../content/site.ts'
 import useReveal from '../hooks/useReveal.ts'
 
-export default function Posts() {
+interface Props {
+  onOpen: (index: number) => void
+}
+
+export default function Posts({ onOpen }: Props) {
   const ref = useReveal<HTMLDivElement>()
-  const [open, setOpen] = useState<number | null>(null)
   return (
     <section id="posts">
       <div className="wrap reveal" ref={ref}>
@@ -12,26 +14,23 @@ export default function Posts() {
         <div className="sec-line"></div>
         {posts.length === 0 && <div className="empty">还没有文章。</div>}
         {posts.map((p, i) => (
-          <article key={p.title} className={`card post${open === i ? ' open' : ''}`}>
+          <article key={p.title} className="card post">
             <div className="post-meta">{p.date}</div>
-            <h3 onClick={() => setOpen(open === i ? null : i)}>
+            <h3 onClick={() => onOpen(i)}>
               {p.title}
-              {p.body && <span className="hint">展开 ▾</span>}
+              <span className="hint">阅读全文 →</span>
             </h3>
             <p className="intro">{p.intro}</p>
-            {p.body && <div className="post-body" dangerouslySetInnerHTML={{ __html: p.body }} />}
           </article>
         ))}
       </div>
       <style>{`
         .post{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;padding:22px 24px}
         .post-meta{font-size:12.5px;color:var(--muted);letter-spacing:.02em}
-        .post h3{font-size:19px;font-weight:600;cursor:pointer}
+        .post h3{font-size:19px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
         .post h3:hover{color:var(--accent)}
-        .post .hint{font-size:12px;color:var(--accent);margin-left:6px}
+        .post .hint{font-size:12px;color:var(--accent);margin-left:auto}
         .post .intro{color:var(--muted);font-size:14px}
-        .post .post-body{display:none;color:var(--text);font-size:14.5px;margin-top:6px;padding-top:12px;border-top:1px dashed var(--border)}
-        .post.open .post-body{display:block}
         .empty{color:var(--muted);font-size:14px;padding:12px 0}
       `}</style>
     </section>
