@@ -11,10 +11,40 @@
   --shadow:0 10px 40px rgba(0,0,0,.35);
   /* 动态容器样式：随视口平滑伸缩，移动端自动收紧 */
   --wrap-pad:clamp(16px,4vw,24px);
-  --section-pad:clamp(40px,8vw,70px);
+  --section-pad:clamp(28px,5vw,46px);
   --card-pad:clamp(18px,3.5vw,24px);
   --sec-title:clamp(24px,5vw,30px);
   --gap:clamp(14px,2.5vw,20px);
+  /* 主题相关派生色 */
+  --on-accent:#0d0f14;
+  --avatar-a:#1c2230;
+  --avatar-b:#0d0f14;
+  --skill-bg:rgba(122,162,255,.12);
+  --skill-border:rgba(122,162,255,.25);
+  --skill-text:#bcd0ff;
+  --vignette1:rgba(122,162,255,.08);
+  --vignette2:rgba(168,230,207,.06);
+  --particle:140,175,255;
+}
+/* 淡雅黄昏色系 */
+[data-theme="dusk"]{
+  --bg:#241a26;
+  --surface:rgba(255,230,210,.05);
+  --surface-solid:#2d2130;
+  --border:rgba(255,230,210,.11);
+  --text:#f7ede4;
+  --muted:#b9a89e;
+  --accent:#f0a35e;
+  --accent2:#e18fae;
+  --on-accent:#241a26;
+  --avatar-a:#3a2a33;
+  --avatar-b:#211a22;
+  --skill-bg:rgba(240,163,94,.12);
+  --skill-border:rgba(240,163,94,.30);
+  --skill-text:#ffd9b0;
+  --vignette1:rgba(240,163,94,.12);
+  --vignette2:rgba(225,143,174,.10);
+  --particle:255,170,110;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -22,16 +52,15 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
   background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  transition:background .4s,color .4s;
 }
-.wrap{max-width:840px;margin:0 auto;padding:0 var(--wrap-pad)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 var(--wrap-pad)}
 section{padding:var(--section-pad) 0}
 .sec-title{font-size:var(--sec-title);font-weight:700;margin-bottom:8px}
 .sec-line{width:44px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));margin-bottom:var(--gap)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
   padding:var(--card-pad);backdrop-filter:blur(8px);transition:.3s;position:relative;overflow:hidden}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
 /* 触屏设备：去掉悬浮位移，保留可点击性 */
 @media(hover:none){ .card:hover{transform:none;box-shadow:none} }
 @media(max-width:480px){

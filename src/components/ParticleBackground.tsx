@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import type { Theme } from '../hooks/useTheme.ts'
 
 interface Part {
   x: number
@@ -9,8 +10,15 @@ interface Part {
   a: number
 }
 
-export default function ParticleBackground() {
+export default function ParticleBackground({ theme }: { theme: Theme }) {
   const ref = useRef<HTMLCanvasElement | null>(null)
+  const rgbRef = useRef('140,175,255')
+
+  useEffect(() => {
+    const rgb = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim()
+    if (rgb) rgbRef.current = rgb
+  }, [theme])
+
   useEffect(() => {
     const canvas = ref.current
     if (!canvas) return
@@ -37,7 +45,7 @@ export default function ParticleBackground() {
         if (p.x < 0 || p.x > W) p.vx *= -1
         if (p.y < 0 || p.y > H) p.vy *= -1
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(140,175,255,${0.25 * (0.5 + 0.5 * Math.sin(p.a))})`
+        ctx.fillStyle = `rgba(${rgbRef.current},${0.25 * (0.5 + 0.5 * Math.sin(p.a))})`
         ctx.fill()
       }
       if (t - last > 80) { drawLines(); last = t }
@@ -48,7 +56,7 @@ export default function ParticleBackground() {
           const a = parts[i], b = parts[j]
           const dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy
           if (d < 16000) {
-            ctx.strokeStyle = `rgba(150,170,230,${(1 - Math.sqrt(d) / 127) * 0.16})`
+            ctx.strokeStyle = `rgba(${rgbRef.current},${(1 - Math.sqrt(d) / 127) * 0.16})`
             ctx.lineWidth = 1
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke()
           }
@@ -62,8 +70,8 @@ export default function ParticleBackground() {
       <canvas ref={ref} style={{ position: 'fixed', inset: 0, zIndex: -2, display: 'block' }} />
       <div className="vignette" />
       <style>{`.vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;
-        background:radial-gradient(120% 90% at 50% 0%,rgba(122,162,255,.08),transparent 60%),
-                   radial-gradient(120% 90% at 50% 100%,rgba(168,230,207,.06),transparent 60%);}`}</style>
+        background:radial-gradient(120% 90% at 50% 0%,var(--vignette1),transparent 60%),
+                   radial-gradient(120% 90% at 50% 100%,var(--vignette2),transparent 60%);}`}</style>
     </>
   )
 }

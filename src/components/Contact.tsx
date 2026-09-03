@@ -1,4 +1,4 @@
-import useReveal from '../hooks/useReveal.ts'
+import useSectionFade from '../hooks/useSectionFade.ts'
 
 interface ContactItem {
   label: string
@@ -14,10 +14,10 @@ const contacts: ContactItem[] = [
 ]
 
 export default function Contact() {
-  const ref = useReveal<HTMLDivElement>()
+  const ref = useSectionFade<HTMLElement>()
   return (
-    <section id="contact">
-      <div className="wrap reveal" ref={ref}>
+    <section id="contact" ref={ref}>
+      <div className="wrap">
         <h2 className="sec-title">联系</h2>
         <div className="sec-line"></div>
         <div className="card contact-card">

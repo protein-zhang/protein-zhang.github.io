@@ -1,11 +1,11 @@
 import { profile } from '../content/site.ts'
-import useReveal from '../hooks/useReveal.ts'
+import useSectionFade from '../hooks/useSectionFade.ts'
 
 export default function About() {
-  const ref = useReveal<HTMLDivElement>()
+  const ref = useSectionFade<HTMLElement>()
   return (
-    <section id="about">
-      <div className="wrap reveal" ref={ref}>
+    <section id="about" ref={ref}>
+      <div className="wrap">
         <h2 className="sec-title">关于我</h2>
         <div className="sec-line"></div>
         <div className="about-grid">
@@ -21,12 +21,12 @@ export default function About() {
       </div>
       <style>{`
         .about-grid{display:grid;grid-template-columns:260px 1fr;gap:clamp(18px,3.5vw,28px);align-items:start}
-        .avatar{aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,#1c2230,#0d0f14);
+        .avatar{aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,var(--avatar-a),var(--avatar-b));
           border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:clamp(48px,12vw,84px);font-weight:700;overflow:hidden}
         .avatar span{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
         .about p{color:var(--muted);margin-bottom:12px}
         .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-        .skill{font-size:12.5px;padding:5px 12px;border-radius:8px;background:rgba(122,162,255,.12);border:1px solid rgba(122,162,255,.25);color:#bcd0ff}
+        .skill{font-size:12.5px;padding:5px 12px;border-radius:8px;background:var(--skill-bg);border:1px solid var(--skill-border);color:var(--skill-text)}
         .info-line{font-size:13.5px;color:var(--muted);margin-top:14px;border-top:1px dashed var(--border);padding-top:14px}
         /* 移动端单列：必须与 .about-grid 同源声明，否则会被上面两列规则覆盖 */
         @media(max-width:680px){

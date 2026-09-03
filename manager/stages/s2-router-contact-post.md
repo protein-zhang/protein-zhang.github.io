@@ -30,4 +30,4 @@
 - 经验：纯静态托管（GitHub Pages）下，SPA 多页面用 hash 路由是最低成本方案，history 路由必须要有服务端 rewrite。
 
 ## 遗留/待办
-- [ ] 用户确认 skillhub 链接后替换文章中的 `{{skillhub链接}}`（已在 privacy.md 登记占位）
+- [x] 用户确认 skillhub 链接后替换文章中的 `{{skillhub链接}}` → 已替换为 https://skillhub.cn/skills/user_2731c9a4/project-manager-v6（S3 阶段完成）
