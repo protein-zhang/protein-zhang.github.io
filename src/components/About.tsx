@@ -28,6 +28,11 @@ export default function About() {
         .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
         .skill{font-size:12.5px;padding:5px 12px;border-radius:8px;background:rgba(122,162,255,.12);border:1px solid rgba(122,162,255,.25);color:#bcd0ff}
         .info-line{font-size:13.5px;color:var(--muted);margin-top:14px;border-top:1px dashed var(--border);padding-top:14px}
+        /* 移动端单列：必须与 .about-grid 同源声明，否则会被上面两列规则覆盖 */
+        @media(max-width:680px){
+          .about-grid{grid-template-columns:1fr}
+          .avatar{width:112px}
+        }
       `}</style>
     </section>
   )

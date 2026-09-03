@@ -34,11 +34,6 @@ section{padding:var(--section-pad) 0}
 .reveal.in{opacity:1;transform:none}
 /* 触屏设备：去掉悬浮位移，保留可点击性 */
 @media(hover:none){ .card:hover{transform:none;box-shadow:none} }
-/* 移动端结构性断点 */
-@media(max-width:680px){
-  .about-grid{grid-template-columns:1fr}
-  .avatar{width:112px}
-}
 @media(max-width:480px){
   section{padding:calc(var(--section-pad) * .86) 0}
 }
