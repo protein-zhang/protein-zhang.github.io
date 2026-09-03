@@ -1,7 +1,7 @@
-import useReveal from '../hooks/useReveal.js'
+import useReveal from '../hooks/useReveal.ts'
 
 export default function Contact() {
-  const ref = useReveal()
+  const ref = useReveal<HTMLDivElement>()
   return (
     <section id="contact">
       <div className="wrap reveal" ref={ref}>

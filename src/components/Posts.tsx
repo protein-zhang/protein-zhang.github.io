@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { posts } from '../content/site.js'
-import useReveal from '../hooks/useReveal.js'
+import { posts } from '../content/site.ts'
+import useReveal from '../hooks/useReveal.ts'
 
 export default function Posts() {
-  const ref = useReveal()
-  const [open, setOpen] = useState(null)
+  const ref = useReveal<HTMLDivElement>()
+  const [open, setOpen] = useState<number | null>(null)
   return (
     <section id="posts">
       <div className="wrap reveal" ref={ref}>

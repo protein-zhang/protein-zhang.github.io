@@ -1,8 +1,8 @@
-import { profile } from '../content/site.js'
-import useReveal from '../hooks/useReveal.js'
+import { profile } from '../content/site.ts'
+import useReveal from '../hooks/useReveal.ts'
 
 export default function About() {
-  const ref = useReveal()
+  const ref = useReveal<HTMLDivElement>()
   return (
     <section id="about">
       <div className="wrap reveal" ref={ref}>

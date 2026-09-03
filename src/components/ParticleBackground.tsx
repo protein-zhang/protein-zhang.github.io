@@ -1,13 +1,24 @@
 import { useEffect, useRef } from 'react'
 
+interface Part {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  r: number
+  a: number
+}
+
 export default function ParticleBackground() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLCanvasElement | null>(null)
   useEffect(() => {
     const canvas = ref.current
-    const ctx = canvas.getContext('2d')
-    let W, H, parts = [], raf
-    const resize = () => { W = canvas.width = innerWidth; H = canvas.height = innerHeight }
-    resize(); addEventListener('resize', resize)
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')!
+    let W = 0, H = 0, raf = 0
+    const parts: Part[] = []
+    const resize = () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight }
+    resize(); window.addEventListener('resize', resize)
     for (let i = 0; i < 70; i++) {
       const a = Math.random() * 2 * Math.PI
       const r = Math.sqrt(Math.random()) * Math.min(W, H) * 0.5
@@ -18,7 +29,7 @@ export default function ParticleBackground() {
       })
     }
     let last = 0
-    const frame = (t) => {
+    const frame = (t: number) => {
       raf = requestAnimationFrame(frame)
       ctx.clearRect(0, 0, W, H)
       for (const p of parts) {
@@ -44,7 +55,7 @@ export default function ParticleBackground() {
         }
     }
     raf = requestAnimationFrame(frame)
-    return () => { cancelAnimationFrame(raf); removeEventListener('resize', resize) }
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
   }, [])
   return (
     <>

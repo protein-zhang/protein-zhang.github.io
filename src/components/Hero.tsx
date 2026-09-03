@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import { typePhrases, profile } from '../content/site.js'
+import { typePhrases, profile } from '../content/site.ts'
 
-function useTypewriter(phrases, { typing = 72, deleting = 42, hold = 1500 } = {}) {
+function useTypewriter(phrases: string[], { typing = 72, deleting = 42, hold = 1500 } = {}) {
   const [text, setText] = useState('')
   useEffect(() => {
-    let pi = 0, ci = 0, deleting = false, timer
+    let pi = 0, ci = 0, isDeleting = false, timer: ReturnType<typeof setTimeout>
     const tick = () => {
       const cur = phrases[pi]
-      ci = deleting ? ci - 1 : ci + 1
+      ci = isDeleting ? ci - 1 : ci + 1
       setText(cur.slice(0, ci))
-      let delay = deleting ? deleting : typing
-      if (!deleting && ci === cur.length) { delay = hold; deleting = true }
-      else if (deleting && ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; delay = 400 }
+      let delay: number
+      if (!isDeleting && ci === cur.length) { delay = hold; isDeleting = true }
+      else if (isDeleting && ci === 0) { isDeleting = false; pi = (pi + 1) % phrases.length; delay = 400 }
+      else delay = isDeleting ? deleting : typing
       timer = setTimeout(tick, delay)
     }
     tick()

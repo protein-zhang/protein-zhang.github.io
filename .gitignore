@@ -4,3 +4,5 @@ dist
 *.local
 .vite
 npm-debug.log*
+# 隐私映射表：真实敏感数据不进入版本库
+manager/privacy.md
