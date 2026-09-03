@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { typePhrases, profile } from '../content/site.js'
 
-function useTypewriter(phrases, { typing = 72, deleting = 42, hold = 1500 }) {
+function useTypewriter(phrases, { typing = 72, deleting = 42, hold = 1500 } = {}) {
   const [text, setText] = useState('')
   useEffect(() => {
     let pi = 0, ci = 0, deleting = false, timer
